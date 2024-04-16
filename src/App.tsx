@@ -1,37 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
-import Home from './Home'
+import Home from './Home.tsx'
+import Customerinfo from './Customerinfo.tsx'
+import Eshop from './Eshop.tsx'
+import Login from './Login.tsx'
+
+const { Sider, Content } = Layout;
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Router>
+      <Layout>
+        <Sider>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+            <Menu.Item key="1">
+              <Link to="/">App</Link>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Link to="/home">Home</Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Content>
+            <Switch>
+              <Route path="/" element={<App />} />
+              <Route path="/home" element={<Home />} />
+            </Switch>
+          </Content>
+        </Layout>
+      </Layout>
+    </Router>
   )
 }
 
